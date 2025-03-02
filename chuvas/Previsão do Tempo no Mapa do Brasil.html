@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo no Mapa do Brasil</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="./Previsão do Tempo no Mapa do Brasil_files/leaflet.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff0000;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            background-color: #1a1a1a;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        label {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        select, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ff0000;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        .weather-info {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ff0000;
+            color: #fff;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .weather-info img {
+            vertical-align: middle;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Previsão do Tempo no Mapa do Brasil</h1>
+    <div class="container">
+        <form id="weatherForm">
+            <label for="state">Estado:</label>
+            <select id="state" required="">
+                <option value="">Selecione um estado</option>
+            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option></select>
+
+            <label for="city">Cidade:</label>
+            <select id="city" required="">
+                <option value="">Selecione uma cidade</option>
+            </select>
+
+            <button type="submit">Buscar Previsão</button>
+        </form>
+
+        <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/8.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(312px, 85px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/7.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(312px, -171px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/8(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(56px, 85px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/8(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(568px, 85px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/9.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(312px, 341px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/7(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(56px, -171px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/7(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(568px, -171px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/9(1).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(56px, 341px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/9(2).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(568px, 341px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/8(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-200px, 85px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/8(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(824px, 85px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/7(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-200px, -171px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/7(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(824px, -171px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/9(3).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-200px, 341px, 0px); opacity: 0;"><img alt="" src="./Previsão do Tempo no Mapa do Brasil_files/9(4).png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(824px, 341px, 0px); opacity: 0;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1457.21px, 2211.66px, 0px) scale(8);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="http://127.0.0.1:5500/index.html#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a><a class="leaflet-control-zoom-out" href="http://127.0.0.1:5500/index.html#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true">−</span></a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com/" title="A JavaScript library for interactive maps"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true">|</span> © OpenStreetMap contributors</div></div></div></div>
+        <div id="weatherResult" class="weather-info">
+            <!-- Previsão do tempo será exibida aqui -->
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="./Previsão do Tempo no Mapa do Brasil_files/leaflet.js.download"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stateSelect = document.getElementById('state');
+            const citySelect = document.getElementById('city');
+            const weatherForm = document.getElementById('weatherForm');
+            const weatherResult = document.getElementById('weatherResult');
+
+            // Inicializar o mapa do Brasil
+            const map = L.map('map').setView([-14.2350, -51.9253], 4); // Centro do Brasil
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Marcador para a cidade selecionada
+            let marker = null;
+
+            // Carregar estados do IBGE
+            fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+                .then(response => response.json())
+                .then(states => {
+                    states.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state.sigla;
+                        option.textContent = state.nome;
+                        stateSelect.appendChild(option);
+                    });
+                });
+
+            // Carregar cidades do IBGE ao selecionar um estado
+            stateSelect.addEventListener('change', () => {
+                const state = stateSelect.value;
+                citySelect.innerHTML = '<option value="">Selecione uma cidade</option>';
+
+                if (state) {
+                    fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`)
+                        .then(response => response.json())
+                        .then(cities => {
+                            cities.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(city => {
+                                const option = document.createElement('option');
+                                option.value = city.nome;
+                                option.textContent = city.nome;
+                                citySelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+
+            // Buscar previsão do tempo e atualizar o mapa
+            weatherForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const city = citySelect.value;
+
+                if (city) {
+                    const apiKey = '4545f3dfdd074a05a45234537252402'; // Substitua pela sua chave da API
+                    const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=4&lang=pt`;
+
+                    fetch(apiUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            const current = data.current;
+                            const forecast = data.forecast.forecastday;
+                            const location = data.location;
+
+                            // Atualizar o mapa com a localização da cidade
+                            if (marker) {
+                                map.removeLayer(marker);
+                            }
+                            marker = L.marker([location.lat, location.lon]).addTo(map);
+                            map.setView([location.lat, location.lon], 10); // Zoom na cidade
+
+                            // Exibir previsão do tempo
+                            let html = `
+                                <h2>Previsão para ${city}</h2>
+                                <p><strong>Agora:</strong> ${current.temp_c}°C, ${current.condition.text}</p>
+                                <img src="${current.condition.icon}" alt="${current.condition.text}">
+                                <h3>Próximos Dias:</h3>
+                            `;
+
+                            forecast.forEach(day => {
+                                html += `
+                                    <p><strong>${day.date}:</strong> ${day.day.maxtemp_c}°C / ${day.day.mintemp_c}°C, ${day.day.condition.text}</p>
+                                    <img src="${day.day.condition.icon}" alt="${day.day.condition.text}">
+                                `;
+                            });
+
+                            weatherResult.innerHTML = html;
+                        })
+                        .catch(error => {
+                            weatherResult.innerHTML = `<p>Erro ao buscar previsão do tempo. Tente novamente.</p>`;
+                        });
+                }
+            });
+        });
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
